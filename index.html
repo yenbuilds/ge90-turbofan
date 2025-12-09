@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GE90-Style Engine Demo - VERY ROUGH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #050816;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #e5e7eb;
+    }
+    #ui {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      font-size: 13px;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+    #ui label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    #ui input[type="range"] {
+      width: 220px;
+    }
+    #ui .readout {
+      margin-top: 4px;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+    #hint {
+      margin-top: 6px;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <div id="ui">
+    <label for="throttle">Throttle</label>
+    <input id="throttle" type="range" min="0" max="100" value="30" />
+    <div class="readout">
+      N1: <span id="n1-val">0</span> % &nbsp;|&nbsp;
+      N2: <span id="n2-val">0</span> %
+    </div>
+    <div id="hint">
+      Drag = orbit • Right-drag = pan • Wheel = zoom
+    </div>
+  </div>
+  <canvas id="scene"></canvas>
+
+  <!-- Main script as ES module -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
