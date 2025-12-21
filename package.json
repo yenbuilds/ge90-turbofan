@@ -1,12 +1,28 @@
 {
-  "name": "ge90_clean_medium",
+  "name": "ge90-turbofan-viewer",
   "version": "1.0.0",
+  "description": "A 3D visualization of a GE90-style turbofan engine built with Three.js",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "lint": "eslint main.js",
+    "lint:fix": "eslint main.js --fix",
+    "test": "echo \"No tests specified\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "keywords": [
+    "three.js",
+    "3d",
+    "turbofan",
+    "engine",
+    "visualization",
+    "webgl"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ge90-turbofan.git"
+  },
+  "homepage": "https://github.com/yourusername/ge90-turbofan#readme"
 }

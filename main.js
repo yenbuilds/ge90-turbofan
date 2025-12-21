@@ -6,7 +6,6 @@
 
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
-import { ExtrudeGeometry } from "https://cdn.jsdelivr.net/npm/three@0.158.0/src/geometries/ExtrudeGeometry.js";
 
 
 
@@ -121,7 +120,7 @@ const shaftMat = new THREE.MeshStandardMaterial({
 
 const HUB_RADIUS = 0.35;
 
-// Helper: create a simple radial box blade
+// Helper: create a simple radial box blade geometry
 function createRadialBladeGeom(rootRadius, span, thickness = 0.03) {
   const bladeLen = span * 0.95;
   const geom = new THREE.BoxGeometry(thickness, bladeLen, thickness * 0.5);
@@ -129,7 +128,19 @@ function createRadialBladeGeom(rootRadius, span, thickness = 0.03) {
   return geom;
 }
 
-// Helper: compressor stage (drum + blade ring)
+/**
+ * Builds a compressor stage consisting of a drum and a ring of blades
+ * @param {Object} params - Parameters for the stage
+ * @param {THREE.Group} params.parentGroup - The group to add the stage to
+ * @param {number} params.stageRadius - Outer radius of the stage
+ * @param {number} params.rootRadius - Inner radius where blades attach
+ * @param {number} params.z - Z position of the stage
+ * @param {number} params.drumLength - Length of the drum
+ * @param {number} params.bladeCount - Number of blades
+ * @param {THREE.Material} params.bladeMat - Material for the blades
+ * @param {number} params.drumColor - Color for the drum
+ * @param {number} params.bladeTwist - Twist angle for blades in radians
+ */
 function buildCompressorStage({
   parentGroup,
   stageRadius,
@@ -168,7 +179,18 @@ function buildCompressorStage({
   }
 }
 
-// Helper: turbine stage (drum + blade ring)
+/**
+ * Builds a turbine stage consisting of a drum and a ring of blades
+ * @param {Object} params - Parameters for the stage
+ * @param {THREE.Group} params.parentGroup - The group to add the stage to
+ * @param {number} params.radius - Radius of the stage
+ * @param {number} params.z - Z position of the stage
+ * @param {number} params.bladeCount - Number of blades
+ * @param {THREE.Material} params.material - Material for drum and blades
+ * @param {number} params.bladeTwist - Twist angle for blades in radians
+ * @param {number} params.rootRadius - Inner radius where blades attach
+ * @param {number} params.thickness - Thickness of blades
+ */
 function buildTurbineStage({
   parentGroup,
   radius,
